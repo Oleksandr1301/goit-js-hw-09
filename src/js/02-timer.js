@@ -26,7 +26,7 @@ const options = {
       btnStart.disabled = false;
       userDate = selectedDates[0];
       btnStart.addEventListener('click', () => {
-        let timer = setInterval(() => {
+        setInterval(() => {
           let countdown = new Date(inputText.value) - new Date();
 
           let timeObject = convertMs(countdown);
