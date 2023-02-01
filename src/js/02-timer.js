@@ -26,14 +26,25 @@ const options = {
       btnStart.disabled = false;
       userDate = selectedDates[0];
       btnStart.addEventListener('click', () => {
-        setInterval(() => {
+      let timer =  setInterval(() => {
           let countdown = new Date(inputText.value) - new Date();
-
+          
+          btnStart.disabled = true;
           let timeObject = convertMs(countdown);
           days.textContent = addLeadingZero(timeObject.days);
           hours.textContent = addLeadingZero(timeObject.hours);
           minutes.textContent = addLeadingZero(timeObject.minutes);
           seconds.textContent = addLeadingZero(timeObject.seconds);
+          if (countdown <= 0) {
+           
+            clearInterval(timer);
+            Notiflix.Notify.failure('Time is running out!');
+            days.textContent = '00';
+            hours.textContent = '00';
+            minutes.textContent = '00';
+            seconds.textContent = '00';
+          // document.querySelector('.timer').innerHTML = "00 : 00 : ";
+          }
         }, 1000);
       });
     }

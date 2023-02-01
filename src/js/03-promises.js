@@ -20,11 +20,13 @@ function createPromise(position, delay) {
   });
   return promise;
 }
-
+btnCreatePromise.disabled = false;
 btnCreatePromise.addEventListener('click', e => {
+  btnCreatePromise.disabled = true;
   e.preventDefault();
   let firstDelay = Number(delay.value);
   let delayStep = Number(step.value);
+  
   for (let i = 0; i < amount.value; i += 1) {
     createPromise(1 + i, firstDelay + i * delayStep)
       .then(({ position, delay }) => {
